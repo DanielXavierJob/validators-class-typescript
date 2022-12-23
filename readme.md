@@ -90,7 +90,8 @@ const validated = valide.validate(
   }
 );
 
-result: event - alert("This value of field data needs must be less than 50")
-result: event - alert("Este dado precisa ser uma frase indiana")
+
+result: event - message.error("This value of field data needs must be less than 50")
+result: event - message.error("Este dado precisa ser uma frase indiana")
 ```
 
