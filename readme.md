@@ -52,6 +52,13 @@ Caso queira mostrar o valor encontrado, e o nome da validação, basta passar
 a chave ``{name}`` para mostrar o nome do campo validado e ``{value}`` para o
 valor validado.
 
+
+Customizando exibição do erro:
+
+No segundo argumento passado ao ``validate``, passe dentro do objeto ``errorProvider``,
+errorProvider é do tipo função, que deverá receber o argumento ``error`` do tipo string,
+e dentro desta função você poderá exibir em toasts customizados por você, alertas, e etc.
+
 Deixo abaixo um exemplo de validação:
 
  
@@ -79,6 +86,7 @@ const validated = valide.validate(
       },
       teste: "Este dado precisa ser uma frase indiana"
     },
+    errorProvider: (error: any) => message.error(error) //toast antd
   }
 );
 

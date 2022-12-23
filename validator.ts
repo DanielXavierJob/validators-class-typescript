@@ -1,8 +1,7 @@
-// import { message } from "antd";
-
 interface IValidates {
   validator: any;
   messages?: any;
+  errorProvider?: (error: string) => any;
 }
 
 export class Validators {
@@ -22,17 +21,20 @@ export class Validators {
       );
       valids.push(...validated);
     }
-    this.valideSendErrors(valids);
+    this.valideSendErrors(valids, validates.errorProvider);
   }
   /**
    * Function responsible for showing the error message in a toast
    * @param errors_list
    */
-  valideSendErrors(errors_list: any) {
+  valideSendErrors(errors_list: any, errorProvider?: any) {
     for (var msgs = 0; msgs < errors_list.length; msgs++) {
       const error = errors_list[msgs].message;
-      alert(error)
-      // message.error(errors_list[msgs].message);
+      if(errorProvider){
+        errorProvider(error);
+      }else{
+        alert(error) //default
+      }
     }
   }
   /**
@@ -58,7 +60,6 @@ export class Validators {
       }
     }
     return valids;
-    // const keys_info = Object.keys(info);
   }
   /**
    * Function responsible by validate the field and set message error
